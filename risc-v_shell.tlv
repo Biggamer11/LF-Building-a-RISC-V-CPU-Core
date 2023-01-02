@@ -42,11 +42,11 @@
 \TLV
    
    $reset = *reset;
-   
-   
-   // YOUR CODE HERE
-   // ...
-   
+   $zero[31:0] = 32'b0;
+   $next_pc[31:0] = $reset ? $zero:
+       $pc[31:0] + 32'b100;
+       
+   $pc[31:0] = >>1$next_pc;
    
    // Assert these to end simulation (before Makerchip cycle limit).
    *passed = 1'b0;
