@@ -70,6 +70,19 @@
    
    $is_j_instr = $instr[6:2] ==  5'b11011;
    
+   // Non-Immediate's
+   $rs2[4:0]    = $instr[24:20];
+   $rs1[4:0]    = $instr[19:15];
+   $funct3[2:0] = $instr[14:12];
+   $rd[4:0]     = $instr[11:7];
+   $opcode[6:0] = $instr[6:0];
+   
+   // Non-Immediate Validity
+   $rs2_valid    = $is_r_instr || $is_s_instr || $is_b_instr;
+   $rs1_valid    = $is_r_instr || $is_i_instr || $is_s_instr || $is_b_instr;
+   $funct3_valid = $is_r_instr || $is_i_instr || $is_s_instr || $is_b_instr;
+   $rd_valid     = $is_r_instr || $is_i_instr || $is_u_instr || $is_j_instr;
+   
    
    // Assert these to end simulation (before Makerchip cycle limit).
    *passed = 1'b0;
